@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script displays time for 12 hours and 59 minutes using a while loop
+
+# Initialize variables
+hour=0
+minute=1
+
+# Loop until hour reaches 12 or we've displayed 70 lines
+while [ $hour -le 12 ] && [ $((hour * 60 + minute)) -le 70 ]; do
+    # Print time in format HH:MM
+    printf "%02d:%02d\n" "$hour" "$minute"
+    # Increment minute
+    ((minute++))
+    # If minute reaches 60, reset it to 0 and increment hour
+    if [ $minute -eq 60 ]; then
+        minute=0
+        ((hour++))
+    fi
+done
+
