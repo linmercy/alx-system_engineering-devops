@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script stops the process named "7-highlander" without using kill or killall
+pid=$(pgrep 7-highlander)
+kill -15 "$pid"
+
