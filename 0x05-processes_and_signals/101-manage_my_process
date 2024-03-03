@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Function to start the manage_my_process script
+start() {
+    /manage_my_process &
+    echo $! > /var/run/my_process.pid
+    echo "manage_my_process started"
+}
+
+# Function to stop the manage_my_process script
+stop() {
+    kill $(cat /var/run/my_process.pid)
+    rm -f /var/run/my_process.pid
+    echo "manage_my_process stopped"
+}
+
+# Function to restart the manage_my_process script
+restart() {
+    stop
+    sleep 2
+    start
+    echo "manage_my_process restarted"
+}
+
+# Check the argument passed
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
+
+exit 0
+
