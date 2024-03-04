@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
-# This script displays listening ports along with PID and program name.
+# Displays listening ports. Includes listening sockets as well
+# + as the PID and name of the program to which each socket belongs.
 
-# Display active internet connections with listening sockets and related programs
-echo "Active Internet connections (only servers)"
-echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
-netstat -tuln | grep 'LISTEN' | awk '{print $1, $4, $NF}' | sed 's/.*://;s/:::/[::]:/' | sed -e 's/\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/& /'
-
-# Display active UNIX domain sockets with listening servers and related programs
-echo "Active UNIX domain sockets (only servers)"
-echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
-netstat -x | grep 'LISTEN' | awk '{print $1, $2, $3, $4, $5, $6, $7}' | sed 's/\// /' | sed 's/^[^ ]* \([^ ]*\) [^ ]* [^ ]* [^ ]* [^ ]* \([^ ]*\)/\1    \2/' | sed -e 's/@/ /'
+netstat -l --program
 
