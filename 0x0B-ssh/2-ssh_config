@@ -1,0 +1,7 @@
+# This SSH client configuration file specifies the private key ~/.ssh/school
+# and refuses password authentication.
+
+Host *
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
