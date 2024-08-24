@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# This script fixes the Apache server and ensures it serves "Hello Holberton" at the root URL
+
+# Start the Apache service
+service apache2 start
+
+# Create or modify the index.html file
+echo "Hello Holberton" > /var/www/html/index.html
+
